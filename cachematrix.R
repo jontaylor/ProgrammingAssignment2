@@ -1,7 +1,9 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Provides two functions to create a special matrix object and another to perform work upon that 
+## special matrix object in order to cache its inverse
 
-## Write a short comment describing this function
+## Creates a clojure object containing the supplied matrix, has internal variables for managing state of the 
+## current matrix
+## Note that changes to the matrix will reset the cached value, this handles changes to the matrix
 
 makeCacheMatrix <- function(our_matrix = matrix()) {
   computed_inverse <- NULL
@@ -21,10 +23,13 @@ makeCacheMatrix <- function(our_matrix = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Takes the object returned from a makeCacheMatrix call and allows you to return either a cached inverse
+## or to compute one if we haven't calculated it yet
+## There is an important change here which is not to pass additional parameters to the solve function as its other
+## paramters could modify output (see cacheSolve(t,b=M) as an example)
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  ## Return a matrix that is the inverse of 'x'
   inverse <- x$getInverse()
   if(!is.null(inverse)) {
     message("getting cached data")
