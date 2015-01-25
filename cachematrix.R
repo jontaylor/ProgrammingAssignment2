@@ -10,7 +10,7 @@ makeCacheMatrix <- function(our_matrix = matrix()) {
   
   set <- function(new_matrix) {
     our_matrix <<- new_matrix #Update our matrix to the new one
-    computer_inverse <<- NULL #Clear the cached value as the matrix has changed (so we recompute it)
+    computed_inverse <<- NULL #Clear the cached value as the matrix has changed (so we recompute it)
   }
   
   get <- function() our_matrix
